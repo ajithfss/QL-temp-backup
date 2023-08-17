@@ -1,5 +1,6 @@
 package com.qlearning.uat.testcases;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -45,7 +46,13 @@ public class IndependentAssessmentTest extends Base{
 		driver.quit();
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
+	public void verifyAssessmentPageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/courses/live/assessment");
+	}
+
+	@Test(groups = {"smoke"})
 	public void verifyCreateIndependentAssessmentFunctionality() {
 		createIndependentAssessmentPage = independentAssessmentPage.clickOnCreateNewAssessment();
 		createIndependentAssessmentPage.enterAssessmentTitle();
@@ -61,5 +68,19 @@ public class IndependentAssessmentTest extends Base{
 			
 	}
 	
+	@Test(groups = {"smoke"})
+	public void verifyIndependentAssessmentSubmitForReview() {
+		driver.findElement(By.xpath("(//p[text()='Edit'])[1]")).click();
+		driver.findElement(By.xpath("//button[text()='Next']")).click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//button[text()='Submit for review']")).click();
+		driver.findElement(By.xpath("//button[text()='Yes']")).click();
+		driver.findElement(By.xpath("//button[text()='OK']")).click();
+	}
 	
 }

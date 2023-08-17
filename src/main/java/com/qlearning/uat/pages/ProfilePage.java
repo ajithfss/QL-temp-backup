@@ -27,6 +27,12 @@ public class ProfilePage {
 	@FindBy(linkText="Payout Info")
 	private WebElement payoutInfoPage;
 	
+	@FindBy(linkText="Notifications")
+	private WebElement notificationPage;
+	
+	@FindBy(linkText="Coupon")
+	private WebElement couponPage;
+	
 	@FindBy(className="mb-1")
 	private WebElement profileName;
 	
@@ -289,6 +295,16 @@ public class ProfilePage {
 		Actions act = new Actions(driver);
 		act.sendKeys(Keys.BACK_SPACE).build().perform();
 		act.sendKeys(Keys.BACK_SPACE).build().perform();	
+	}
+	
+	public NotificationSettingsPage clickOnNotificationsPage() {
+		notificationPage.click();
+		return new NotificationSettingsPage(driver);
+	}
+	
+	public CouponPage clickOnCouponPage() {
+		couponPage.click();
+		return new CouponPage(driver);
 	}
 	
 	

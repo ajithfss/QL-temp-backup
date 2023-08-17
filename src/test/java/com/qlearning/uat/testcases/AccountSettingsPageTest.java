@@ -48,13 +48,19 @@ public class AccountSettingsPageTest extends Base{
 		driver.quit();
 	}
 	
-	//TC_14
+	@Test(groups= {"smoke"})
+	public void verifyAccountSettingsPageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/profile/teacher/teacher-profile");
+	}
+	
+	
 	@Test(groups= {"smoke"})
 	public void verifyNavigateToAccountSettingsPageFunctionality() {
 		Assert.assertTrue(accountSettingsPage.retrieveAccountSettingsText(),"account settings  page is not displayed");
 	}
 	
-	//TC_15
+	
 	@Test(groups= {"smoke"})
 	public void verifyChangeEmailFunctionality() {
 		accountSettingsPage.clickOnEmailChangeButton();
@@ -63,8 +69,8 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveChangeEmailText(),"change email popup is not displayed");
 	}
 	
-	//TC_17
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifyCloseButtonInChangeEmailPopup() {
 		accountSettingsPage.clickOnEmailChangeButton();
 		Assert.assertTrue(accountSettingsPage.retrieveChangeEmailText(),"change email popup is not displayed");
@@ -72,14 +78,14 @@ public class AccountSettingsPageTest extends Base{
 	}
 	
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyEnterEmailWarning() {
 		accountSettingsPage.clickOnEmailChangeButton();
 		accountSettingsPage.clickOnInsideChangeEmailButton();
 		Assert.assertTrue(accountSettingsPage.retrieveEnterEmailWarning(),"enter your email warning is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidEmailWarning() {
 		accountSettingsPage.clickOnEmailChangeButton();
 		accountSettingsPage.clickOnInsideChangeEmailButton();
@@ -87,7 +93,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveInvalidEmailWarning(),"Invalid email warning is not displayed");		
 	}
 	
-	//TC_19
+	
 	@Test(groups= {"smoke"})
 	public void verifyChangePasswordFunctionality() {
 		accountSettingsPage.clickOnPasswordChangeButton();
@@ -96,14 +102,14 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveChangePasswordText(),"change password popup is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyPasswordFillThisFieldWarning() {
 		accountSettingsPage.clickOnPasswordChangeButton();
 		accountSettingsPage.clickOnInsideChangePasswordButton();
 		Assert.assertTrue(accountSettingsPage.retrieveFillThisFieldWarning(), "please fill this field warning is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void VerifyInvalidCurrentPasswordWarning() {
 		accountSettingsPage.clickOnPasswordChangeButton();
 		accountSettingsPage.fillInvalidPasswordData();
@@ -111,7 +117,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveInvalidCurrentPasswordWarning(), "Invalid current password warning is not shown");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyShortPasswordWarning() {
 		accountSettingsPage.clickOnPasswordChangeButton();
 		accountSettingsPage.enterShortPassword();
@@ -119,7 +125,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveShortPasswordWarning(),"short password warning is not displayed");	
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyPasswordCombinationWarning() {
 		accountSettingsPage.clickOnPasswordChangeButton();
 		accountSettingsPage.enterComboLessPassword();
@@ -127,15 +133,15 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrievePasswordComboWarning(),"password combination missing warning is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyPasswordNotMatchWarning() {
 		accountSettingsPage.clickOnPasswordChangeButton();
 		accountSettingsPage.enterMismatchPassword();
 		Assert.assertTrue(accountSettingsPage.retrievePasswordMisMatchWarning(),"password mismatch warning is not displayed");
 	}
 	
-	//TC_21
-	@Test
+	
+	@Test(groups= {"smoke"})
 	public void verifyChangeMobileNumberFunctionality() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -143,7 +149,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveChangeMobileNumberPopup(), "change mobile number popup is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyChangeMobileNumberOTPSendFunctionality() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		accountSettingsPage.enterNewMobileNumberField();
@@ -151,7 +157,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveOTPSentText(), "OTP sent message is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyOTPfailedWarning() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		accountSettingsPage.enterNewMobileNumberField();
@@ -161,23 +167,16 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveOtpVerificationWarningText(),"Otp verification failed message is not displayed");
 	}
 	
-//	@Test
-//	public void verifyOTPfailedWarningWithBlankField() {
-//		accountSettingsPage.clickOnMobileNumberChangeButton();
-//		accountSettingsPage.enterNewMobileNumberField();
-//		accountSettingsPage.clickOnChangeMobileNumberSubmitButton();
-//		accountSettingsPage.clickOnOTPverifyButton();
-//		Assert.assertTrue(accountSettingsPage.retrieveOtpVerificationWarningText(),"Otp verification failed message is not displayed");	
-//	}
+
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidMobileNumberWarning() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		accountSettingsPage.enterInvalidMobileNumber();
 		Assert.assertTrue(accountSettingsPage.retrieveInvalidWarning(), "invalid warning is not displayed");
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifySameMobileNumberExistsWarning() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		accountSettingsPage.enterExistMobileNumber();
@@ -185,7 +184,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveSameMobileNumberExistWarning(), "same mobile exist warning is not shown");
 	}
 	
-	//TC_24
+	
 	@Test(groups= {"smoke"})
 	public void verifyCloseButtonInChangeMobileNumberPopup() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
@@ -193,7 +192,7 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveAccountSettingsText(),"account settings  page is not displayed");	
 	}
 	
-	//TC_25
+	
 	@Test(groups= {"smoke"})
 	public void verifyAccountActivityDetails() {
 		accountSettingsPage.clickOnLoginActivityViewButton();
@@ -203,15 +202,15 @@ public class AccountSettingsPageTest extends Base{
 		Assert.assertTrue(accountSettingsPage.retrieveMobileNumberUpdateText(),"MobileNumberUpdate is not displayed");
 	}
 	
-	//TC_26
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifyCloseButtonInAccountActivityPopup() {
 		accountSettingsPage.clickOnLoginActivityViewButton();
 		accountSettingsPage.clickOnCloseButton();
 		Assert.assertTrue(accountSettingsPage.retrieveAccountSettingsText(),"account settings  page is not displayed");
 	}
 	
-	//TC_27
+	
 	@Test(groups= {"smoke"})
 	public void verifyDeleteAccountFunctionality() {
 		accountSettingsPage.clickOnDeactivateButton();
@@ -221,16 +220,16 @@ public class AccountSettingsPageTest extends Base{
 		
 	}
 	
-	//TC_29
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifyCancelButtonInDeleteAccount() {
 		accountSettingsPage.clickOnDeactivateButton();
 		accountSettingsPage.clickOnCancelButtonInDeleteAccount();
 		Assert.assertTrue(accountSettingsPage.retrieveAccountSettingsText(),"account settings  page is not displayed");
 	}
 	
-	//TC_30
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifyCloseButtonInDeleteAccountPopup() {
 		accountSettingsPage.clickOnDeactivateButton();
 		accountSettingsPage.clickOnCloseButton();

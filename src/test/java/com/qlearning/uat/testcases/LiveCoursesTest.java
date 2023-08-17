@@ -1,5 +1,6 @@
 package com.qlearning.uat.testcases;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -50,7 +51,13 @@ public class LiveCoursesTest extends Base {
 		driver.quit();
 	}
 	
-	@Test
+	@Test(groups= {"smoke"})
+	public void verifyLiveCoursePageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/courses/live");
+	}
+	
+	@Test(groups= {"smoke"})
 	public void verifyCreateLiveCourseFunctionality() { 
 		liveCourseDetailsPage = liveCoursesPage.clickOnCreateNewCourseButton();
 		liveCourseDetailsPage.enterCourseTitle();
@@ -68,5 +75,27 @@ public class LiveCoursesTest extends Base {
 		liveCoursesPage = liveCourseTimeDurationPage.clickOnCreateButton();
 		Assert.assertTrue(liveCoursesPage.retrieveEditButtonPresence(), "live course not created successfully");
 		
+	}
+	@Test
+	public void verifyLiveCourseSubmitForReview() {
+//		liveCourseDetailsPage = liveCoursesPage.clickOnCreateNewCourseButton();
+//		liveCourseDetailsPage.enterCourseTitle();
+//		liveCourseDetailsPage.enterCourseOverview();
+//		liveCourseDetailsPage.selectCategory();
+//		liveCourseDetailsPage.selectSubCategory();
+//		liveCoursePricingPage = liveCourseDetailsPage.clickOnNextButton();
+//		liveCoursePricingPage.selectFee();
+//		liveCoursePricingPage.uploadThumnail();
+//		liveCoursePricingPage.uploadIntroVideo();
+//		liveCourseTimeDurationPage = liveCoursePricingPage.clickOnNextButton();
+//		liveCourseTimeDurationPage.selectCourseDuration();
+//		liveCourseTimeDurationPage.selectCourseStartDate();
+//		liveCourseTimeDurationPage.fillClassTime();
+//		liveCoursesPage = liveCourseTimeDurationPage.clickOnCreateButton();
+//		Assert.assertTrue(liveCoursesPage.retrieveEditButtonPresence(), "live course not created successfully");
+		
+		
+		driver.findElement(By.xpath("(//p[text()='Edit'])[1]")).click();
+		driver.findElement(By.xpath("//button[text()='Submit For Review']")).click();
 	}
 }

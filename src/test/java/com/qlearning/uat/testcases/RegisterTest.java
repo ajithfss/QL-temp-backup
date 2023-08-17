@@ -1,6 +1,5 @@
 package com.qlearning.uat.testcases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -30,8 +29,14 @@ public class RegisterTest extends Base{
 		driver.quit();
 	}
     
+	
+	@Test(groups={"smoke"})
+	public void verifyRegisterPageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/create-account");
+	}
     
-    @Test
+    @Test(groups={"regression"})
 	public void verifyRegisterationWithInvalidEmailId() {
 		
     	
@@ -46,19 +51,9 @@ public class RegisterTest extends Base{
 		Assert.assertEquals(actualInvalidEmailWarning, "Invalid email address" );
 	}
     
-    public void verifyRegistrationWithValidDetails() {
-    	
-    	registerPage.enterFirstName(dataProp.getProperty("firstName"));
-    	registerPage.enterMiddleName(dataProp.getProperty("middleName"));
-    	registerPage.enterLastName(dataProp.getProperty(null));
-    	registerPage.enterEmailAddress(dataProp.getProperty(null));
-    	registerPage.enterMobileNumber(dataProp.getProperty(null));
-    	registerPage.enterPassword(dataProp.getProperty(null));
-    	registerPage.clickOnCreateAccountOption();
-    	Assert.assertTrue(driver.findElement(By.linkText("Instructor Dashboard")).isDisplayed());
-    }
+   
     
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationLeavingFirstNameField() {
     	registerPage.enterMiddleName("academy");
     	registerPage.enterLastName("Instructor");
@@ -70,7 +65,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualFirstNameWarning, "First name required");
     }
     
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationLeavingLastNameField() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -83,7 +78,7 @@ public class RegisterTest extends Base{
 	
     }
     
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationLeavingEmailAddressField() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -94,7 +89,7 @@ public class RegisterTest extends Base{
     	String actualEmailWarning = registerPage.retrieveEmailRequiredWarning();
     	Assert.assertEquals(actualEmailWarning, "Please enter your email address");
     }
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationLeavingMobileNumberField() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -107,7 +102,7 @@ public class RegisterTest extends Base{
     	
     }
     
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationLeavingPasswordField() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -119,7 +114,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualPasswordWarning, "Please Enter Password");
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyRegistrationWithInvalidMobileNumber() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -132,7 +127,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualInvalidMobileWarning, "invalid mobile number");	
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyShortPasswordWarning() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -146,7 +141,7 @@ public class RegisterTest extends Base{
     	
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyPasswordCombinationWarning() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -159,7 +154,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualShortPasswordWarning, "Please include combinations of Lowercase, Uppercase, Numbers and special characters.");	
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyUserAlreadyExistWarning() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -172,7 +167,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualUserExistWarning, "User already Exist,Please login");
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyMobileNumberAlreadyExistWarning() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");
@@ -186,7 +181,7 @@ public class RegisterTest extends Base{
     	
     }
     
-    @Test
+    @Test(groups={"smoke"})
     public void verifyRegistrationWithoutFillingAnyFields() {
     	registerPage.clickOnCreateAccountOption();
     	String actualFirstNameWarning = registerPage.retrieveFirstNameRequiredWarning();
@@ -201,7 +196,7 @@ public class RegisterTest extends Base{
     	Assert.assertEquals(actualPasswordWarning, "Please Enter Password");	
     }
     
-    @Test
+    @Test(groups={"regression"})
     public void verifyRegistrationWithRegisteredStudentEmail() {
     	registerPage.enterFirstName("Qlearning");
     	registerPage.enterMiddleName("academy");

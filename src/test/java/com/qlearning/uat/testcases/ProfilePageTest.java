@@ -49,13 +49,20 @@ public class ProfilePageTest extends Base{
 		driver.quit();
 	}
 	
-	//TC_11
+	
+	@Test(groups= {"smoke"})
+	public void verifyProfilePageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/profile/teacher/teacher-profile");
+	}
+	
+	
 	@Test(groups = {"smoke"})
 	public void verifyNavigateToProfilePageFunctionality() {
 		Assert.assertTrue(profilePage.retrieveProfilePageText(),"profile page not displayed");
 	}
 	
-	//TC_12
+	
 	//need to implement dynamic changes in categories of expertise field:
 	@Test(groups = {"smoke"})
 	public void verifyProfileEditFunctionality() {
@@ -76,7 +83,7 @@ public class ProfilePageTest extends Base{
 		profilePage.clickOnProfileUpdatedSuccessButton();		
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyFirstNameRequiredWarning() {
 		profilePage.clearFirstNameField();
 		profilePage.clickOnSaveChangesButton();
@@ -87,7 +94,7 @@ public class ProfilePageTest extends Base{
 		Assert.assertEquals(warningMsg, "Please fill this field");
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void VerifyLastNameRequiredWarning() {
 		
 		profilePage.clearLastNameField();
@@ -96,7 +103,7 @@ public class ProfilePageTest extends Base{
 		Assert.assertEquals(warningMsg, "Please fill this field");		
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyAboutYouFieldWarning() {
 		profilePage.clearAboutYouField();
 		profilePage.clickOnSaveChangesButton();
@@ -104,7 +111,7 @@ public class ProfilePageTest extends Base{
 		Assert.assertEquals(warningMsg, "Please fill this field");
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyExperienceFieldWarning() {
 		profilePage.clearExperienceField();
 		profilePage.clickOnSaveChangesButton();
@@ -112,7 +119,7 @@ public class ProfilePageTest extends Base{
 		Assert.assertEquals(warningMsg, "Please fill this field");
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyCategoriesOfExpertiseWarning() {
 		profilePage.clickOnSaveChangesButton();
 		String warningMsg = profilePage.retrievefillFieldWarning();
@@ -120,7 +127,7 @@ public class ProfilePageTest extends Base{
 	}
 	
 	
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyAvailableInaWeekFieldWarning() {
 		profilePage.clearAvailableInaWeekField();
 		profilePage.clickOnSaveChangesButton();
@@ -129,29 +136,10 @@ public class ProfilePageTest extends Base{
 	}
 	
 	
-//	@Test
-//	public void verifyAvailableTimeWarning() {
-//		
-//		profilePage.clearAvailableTimeFromField();
-//		profilePage.clickOnSaveChangesButton();
-//		String warningMsg = profilePage.retrieveAvailableTimeFromFieldWarning();
-//		Assert.assertEquals(warningMsg, "Invalid");
-//	}
 
-//	@Test
-//	public void verifyBlankProfileSubmitWarning() {
-//		profilePage.clearFirstNameField();
-//		profilePage.clearLastNameField();
-//		profilePage.clearAboutYouField();
-//		profilePage.clearExperienceField();
-//		profilePage.clearAvailableInaWeekField();
-//		profilePage.clearAvailableTimeFromField();
-//		String warningMsg = profilePage.retrievefillFieldWarning();
-//		Assert.assertEquals(warningMsg, "Please fill this field");
-//	}
 	
-	//TC_13
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifySocialMediaLinks() {
 		profilePage.enterFacebookLink();
 		profilePage.enterInstagramLink();
@@ -166,28 +154,28 @@ public class ProfilePageTest extends Base{
 		
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidFaceBookUrl() {
 		profilePage.editFacebookLink();
 		String warning  = profilePage.retrieveInvalidWarning();
 		Assert.assertEquals(warning, "Invalid");	
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidInstagramUrl() {
 		profilePage.editInstagramLink();
 		String warning  = profilePage.retrieveInvalidWarning();
 		Assert.assertEquals(warning, "Invalid");	
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidLinkedinUrl() {
 		profilePage.editLinkedinLink();
 		String warning  = profilePage.retrieveInvalidWarning();
 		Assert.assertEquals(warning, "Invalid");	
 	}
 	
-	@Test
+	@Test(groups= {"regression"})
 	public void verifyInvalidTwitterUrl() {
 		profilePage.editTwitterLink();
 		String warning  = profilePage.retrieveInvalidWarning();

@@ -1,11 +1,6 @@
 package com.qlearning.uat.testcases;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,8 +36,14 @@ public class LoginTest extends Base {
 	public void tearDown() {
 		driver.quit();
 	}
+	
+	@Test(groups= {"smoke"})
+	public void verifyLoginPageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/login");
+	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups= {"regression"})
 	public void verifyLoginWithInvalidCredentials() {
 
 		loginPage.enterEmailAddress(dataProp.getProperty("invalidEmail"));
@@ -53,7 +54,7 @@ public class LoginTest extends Base {
 
 	}
 	
-//TC_2
+
 	@Test(priority = 2, groups = {"smoke"} )
 	public void verifyLoginWithValidCredentials() {
 
@@ -70,17 +71,13 @@ public class LoginTest extends Base {
 		return data;
 	}
 
-	@Test(priority = 3, dataProvider = "supplyDataFromDataProvider")
+	//@Test(priority = 3, dataProvider = "supplyDataFromDataProvider")
 	public void verifyLoginWithDataProvider(String email, String password) {
 
-		// LoginPage loginPage = new LoginPage(driver);
+	
 		loginPage.enterEmailAddress(email);
-		// driver.findElement(By.id("email")).sendKeys(email);
 		loginPage.enterPassword(password);
-		// driver.findElement(By.id("pasword")).sendKeys(password);
 		dashboardPage = loginPage.clickOnLoginButton();
-		// driver.findElement(By.className("login-form-btn")).click();
-		// DashboardPage dashboardPage = new DashboardPage(driver);
 		Assert.assertTrue(dashboardPage.getDisplayStatusOfInstructorDashboard(),
 				"Instructor Dashboard is not displayed");
 	}
@@ -91,25 +88,16 @@ public class LoginTest extends Base {
 		return data;
 	}
 
-	@Test(priority = 4, dataProvider = "supplyDataFromExcel")
+	//@Test(priority = 4, dataProvider = "supplyDataFromExcel")
 	public void verifyLoginWithExcelData(String email, String password) {
-
-		// LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterEmailAddress(email);
-		// driver.findElement(By.id("email")).sendKeys(email);
 		loginPage.enterPassword(password);
-		// driver.findElement(By.id("pasword")).sendKeys(password);
 		dashboardPage = loginPage.clickOnLoginButton();
-		// driver.findElement(By.className("login-form-btn")).click();
-		// DashboardPage dashboardPage = new DashboardPage(driver);
 		Assert.assertTrue(dashboardPage.getDisplayStatusOfInstructorDashboard(),
-				"Instructor Dashboard is not displayed");
-		// String actualStr = driver.findElement(By.xpath("//span[text()='Instructor
-		// Dashboard']")).getText();
-		// Assert.assertEquals(actualStr, "Instructor Dashboard");
+				"Instructor Dashboard is not displayed");	
 	}
 
-	@Test()
+	@Test(groups = {"smoke"})
 	public void verifyLoginWithoutFillingEmailId() {
 		loginPage.enterPassword(prop.getProperty("validInstructorPwd"));
 		loginPage.clickOnLoginButton();
@@ -118,7 +106,7 @@ public class LoginTest extends Base {
 
 	}
 
-	@Test()
+	@Test(groups = {"smoke"})
 	public void verifyLoginWithoutFillingPassword() {
 		loginPage.enterEmailAddress(prop.getProperty("validInstructorEmail"));
 		loginPage.clickOnLoginButton();
@@ -127,7 +115,7 @@ public class LoginTest extends Base {
       //  Assert.assertEquals("//small[text()='Please Enter your Password']", "Please Enter your Password");
 	}
 
-	@Test
+	@Test(groups = {"smoke"})
 	public void verifyLoginWithoutFillingAnyCredential() {
 		loginPage.clickOnLoginButton();
 		String emailWarning = loginPage.retrieveEnterEmailWarningText();
@@ -136,7 +124,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(passwordWarning, "Please Enter your Password");
 	}
 
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyLoginWithInvalidEmailIdFormat() {
 		loginPage.enterEmailAddress(dataProp.getProperty("invalidEmailFormat"));
 		loginPage.enterPassword(prop.getProperty("validInstructorPwd"));
@@ -145,7 +133,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(invalidEmailWarning, "Invalid email address");
 	}
 
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyLoginWithInvalidPassword() {
 		loginPage.enterEmailAddress(prop.getProperty("validInstructorEmail"));
 		loginPage.enterPassword(dataProp.getProperty("invalidPwd"));
@@ -154,15 +142,15 @@ public class LoginTest extends Base {
 		Assert.assertEquals(invalidPasswordWarning, "Invalid Credentials");
 	}
 
-	//TC_3
-	@Test(groups = {"smoke"})
+	
+	@Test(groups = {"regression"})
 	public void verifyForgotPasswordPopupWithRegisteredEmailId() {
 		loginPage.clickOnForgotPasswordOption();
 		Assert.assertTrue(loginPage.retrieveForgotPasswordPopup(), "forgot password popup is not displayed");
 	}
 	
 	//TC_4
-	@Test(groups = {"smoke"})
+	@Test(groups = {"regression"})
 	public void verifyForgotPasswordEnterOTPWithRegisteredEmailId() {
 		loginPage.clickOnForgotPasswordOption();
 		loginPage.enterForgotPasswordEmailAddress(prop.getProperty("validInstructorEmail"));
@@ -172,7 +160,7 @@ public class LoginTest extends Base {
 
 	
 	
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyForgotPasswordWithNotRegisteredEmailId() {
 		loginPage.clickOnForgotPasswordOption();
 		loginPage.enterForgotPasswordEmailAddress(dataProp.getProperty("invalidEmail"));
@@ -181,7 +169,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(notRegisteredEmailWarning, "Unable to find this user");
 	}
 
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyForgotPasswordWithInvalidEmailIdFormat() {
 		loginPage.clickOnForgotPasswordOption();
 		loginPage.enterForgotPasswordEmailAddress(dataProp.getProperty("invalidEmailFormat"));
@@ -190,7 +178,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(invalidEmailWarning, "Invalid email address");
 	}
 
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyForgotPasswordWithoutEnteringEmailId() {
 		loginPage.clickOnForgotPasswordOption();
 		loginPage.clickOnForgotPasswordSubmitButton();
@@ -198,7 +186,7 @@ public class LoginTest extends Base {
 		Assert.assertEquals(actualWarning, "Please enter your email address");
 	}
 
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyCreateAccountButtonNavigation() {
 		registerPage = loginPage.clickOnLoginPageCreateAccountButton();
 		String createAccountText = registerPage.retrieveCreateAccountText();
@@ -206,8 +194,8 @@ public class LoginTest extends Base {
 
 	}
 
-	//TC_08
-	@Test(groups = {"smoke"})
+	
+	@Test(groups = {"regression"})
 	public void verifyMobileLoginOTPpopup() {
 		loginPage.clickOnLoginWithMobileOption();
 		loginPage.enterMobileNumberField();
@@ -216,13 +204,13 @@ public class LoginTest extends Base {
 	}
 	
 	
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyCarouselNextButtonFunctionality() {
 		loginPage.clickOnCarouselNextButton();
 	}
 
 	
-	@Test
+	@Test(groups = {"regression"})
 	public void verifyCarouselBackButtonFunctionality() {
 		loginPage.clickOnCarouselBackButton();
 	}

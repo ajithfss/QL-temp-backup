@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class DashboardPage {
 	
-WebDriver driver;
+ WebDriver driver;
 	
 	public DashboardPage(WebDriver driver) {
 		this.driver = driver;
@@ -54,6 +54,15 @@ WebDriver driver;
 	@FindBy(xpath="(//img[@alt='Profile Image'])[2]")
 	private WebElement instructorProfileIcon;
 	
+	@FindBy(xpath="(//span[text()='Demo Class'])[1]")
+	private WebElement demoClassOption;
+	
+	@FindBy(xpath="(//span[text()='My Learners'])[1]")
+	private WebElement myLearnersOption;
+	
+	@FindBy(xpath="//span[text()=' Messages']")
+	private WebElement messagesOption;
+	
 	
 	//Actions
 	public boolean getDisplayStatusOfInstructorDashboard() {
@@ -79,6 +88,21 @@ WebDriver driver;
 	public IndependentAssessmentPage clickOnIndependentAssessmentOption() {
 		independentAssessment.click();
 		return new IndependentAssessmentPage(driver);
+	}
+	
+	public DemoClassPage clickOnDemoClassOption() {
+		demoClassOption.click();
+		return new DemoClassPage(driver);
+	}
+	
+	public MyLearnersPage clickOnMyLearnersOption() {
+		myLearnersOption.click();
+		return new MyLearnersPage(driver);
+	}
+	
+	public MessagesPage clickOnMessagesOption() {
+		messagesOption.click();
+		return new MessagesPage(driver);
 	}
 	
 }

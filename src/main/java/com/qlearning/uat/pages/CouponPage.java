@@ -70,6 +70,7 @@ public class CouponPage {
 	@FindBy(xpath="//span[text()='Expired ']")
 	private WebElement couponExpiredWarning;
 	
+	//Actions:
 	
 	
 	

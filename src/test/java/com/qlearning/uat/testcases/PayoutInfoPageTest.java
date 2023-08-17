@@ -43,16 +43,21 @@ public class PayoutInfoPageTest extends Base {
 		driver.quit();
 	}
 	
-	//TC_31
-	@Test
+	@Test(groups= {"smoke"})
+	public void verifyPayoutInfoPageUrl() {
+		String url = driver.getCurrentUrl();
+		Assert.assertEquals(url,"https://uat.qlearning.academy/profile/teacher/teacher-profile");
+	}
+	
+	@Test(groups= {"regression"})
 	public void verifyAddBankAccountPopup() {
 		payoutInfoPage.clickOnAddPaymentInfoButton();
 		Assert.assertTrue(payoutInfoPage.retrieveBankAccountPageText(), "bank account details page is not displayed");		
 	}
 	
-	//TC_32
+	
 	@Test(groups= {"smoke"})
-	public void verifyFillingAccountdetails() {
+	public void verifyAddAccountdetails() {
 		payoutInfoPage.clickOnAddPaymentInfoButton();
 		payoutInfoPage.enterAccountHolderName();
 		payoutInfoPage.enterBankName();
@@ -65,8 +70,8 @@ public class PayoutInfoPageTest extends Base {
 		payoutInfoPage.clickOnDeleteOkButton();
 	}
 	
-	//TC_33
-	@Test(groups= {"smoke"})
+	
+	@Test(groups= {"regression"})
 	public void verifyEditBankAccountDetailsDisplay() {
 		payoutInfoPage.clickOnAddPaymentInfoButton();
 		payoutInfoPage.enterAccountHolderName();
@@ -82,8 +87,8 @@ public class PayoutInfoPageTest extends Base {
 		payoutInfoPage.clickOnDeleteOkButton();
 	}
 	
-	//TC_34
-		@Test(groups= {"smoke"})
+	
+		@Test(groups= {"regression"})
 		public void verifyEditBankAccountDetailsSuccess() {
 			payoutInfoPage.clickOnAddPaymentInfoButton();
 			payoutInfoPage.enterAccountHolderName();
@@ -101,8 +106,8 @@ public class PayoutInfoPageTest extends Base {
 			payoutInfoPage.clickOnDeleteOkButton();
 		}
 		
-		//TC_35
-		@Test(groups= {"smoke"})
+		
+		@Test(groups= {"regression"})
 		public void verifydeleteAccountConfirmationPopup() {
 			payoutInfoPage.clickOnAddPaymentInfoButton();
 			payoutInfoPage.enterAccountHolderName();
