@@ -3,6 +3,7 @@ package com.qlearning.uat.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -74,4 +75,9 @@ public class Utilities {
 		}
 		return destinationScreenshotPath;
 	}
+	
+	public static String dynamicText() {
+		Date date = new Date();
+		return date.toString().replace(" ", "_").replace(":", "_");
+		}
 }

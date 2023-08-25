@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.qlearning.uat.utils.Utilities;
+
 public class RecordedCourseDetailsPage {
 
 	WebDriver driver;
+	
 
 	public RecordedCourseDetailsPage(WebDriver driver) {
 		this.driver = driver;
@@ -41,7 +44,7 @@ public class RecordedCourseDetailsPage {
 	//Actions:
 	
 	public void enterCourseTitle() {
-		courseTitle.sendKeys("UAT testing");
+		courseTitle.sendKeys("UAT testing"+Utilities.dynamicText());
 	}
 	
 	public void enterCourseOverview() {

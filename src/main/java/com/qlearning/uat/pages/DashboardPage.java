@@ -27,6 +27,12 @@ public class DashboardPage {
 	@FindBy(linkText="Assessments")
 	private WebElement independentAssessment;
 	
+	@FindBy(xpath="//button[text()='Withdraw']")
+	private WebElement withdrawOption;
+	
+	@FindBy(xpath="//div[text()='Withdraw Fund']")
+	private WebElement withdrawAmountPage;
+	
 	@FindBy(xpath="//h5[text()='Current Balance']")
 	private WebElement currentBalance;
 	
@@ -63,6 +69,11 @@ public class DashboardPage {
 	@FindBy(xpath="//span[text()=' Messages']")
 	private WebElement messagesOption;
 	
+	@FindBy(xpath="//button[text()='Log Out']")
+	private WebElement logOutOption;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	private WebElement logoutYesButton;
 	
 	//Actions
 	public boolean getDisplayStatusOfInstructorDashboard() {
@@ -105,4 +116,17 @@ public class DashboardPage {
 		return new MessagesPage(driver);
 	}
 	
+	public void clickOnDashboardLogoutOption() {
+		logOutOption.click();
+		logoutYesButton.click();
+	}
+	
+	public void clickOnWithdrawOption() {
+		withdrawOption.click();
+	}
+	
+	public Boolean retrieveWithdrawAmountPage() {
+	Boolean withdraw =	withdrawAmountPage.isDisplayed();
+	return withdraw;
+	}
 }

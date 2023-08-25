@@ -1,10 +1,7 @@
 package com.qlearning.uat.testcases;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +13,6 @@ import com.qlearning.uat.pages.DashboardPage;
 import com.qlearning.uat.pages.HomePage;
 import com.qlearning.uat.pages.LoginPage;
 import com.qlearning.uat.pages.ProfilePage;
-import com.qlearning.uat.utils.Utilities;
 
  class CouponTest extends Base{
 
@@ -48,18 +44,18 @@ import com.qlearning.uat.utils.Utilities;
 		driver.quit();
 	}
 	
-	@Test
+	@Test(groups= {"smoke"})
 	public void verifyCouponPageUrl() {
 		String url = driver.getCurrentUrl();
 		Assert.assertEquals(url,"https://uat.qlearning.academy/profile/teacher/teacher-profile");
 	}
 	
-	@Test
+	@Test(groups= {"smoke"})
 	 public void verifyCouponCreationFunctionality() {
 		 
-		 WebDriver driver = new ChromeDriver();
-			driver.findElement(By.xpath("(//img[@alt='Profile Image'])[2]")).click();
-			driver.findElement(By.linkText("Coupon")).click();
+//		 WebDriver driver = new ChromeDriver();
+//			driver.findElement(By.xpath("(//img[@alt='Profile Image'])[2]")).click();
+//			driver.findElement(By.linkText("Coupon")).click();
 			driver.findElement(By.name("couponName")).sendKeys("Test10");
 			driver.findElement(By.tagName("select")).click();
 			driver.findElement(By.xpath("//option[text()='10%']")).click();

@@ -102,6 +102,8 @@ public class ProfilePage {
 	@FindBy(xpath="//small[text()='Invalid']")
 	private WebElement invalidWarning;
 	
+	
+	
 	//Actions:
 	public String retrieveFirstNameFieldText() { 
 		String firstNameFieldText = firstNameField.getText();
@@ -223,7 +225,7 @@ public class ProfilePage {
 	}
 	
 	public void clearAboutYouField() {
-		descriptionField.click();
+		descriptionField.clear();
 	}
 	
 	public void clearExperienceField() {
@@ -306,6 +308,7 @@ public class ProfilePage {
 		couponPage.click();
 		return new CouponPage(driver);
 	}
+	
 	
 	
 }

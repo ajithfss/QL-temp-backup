@@ -11,16 +11,18 @@ import com.qlearning.uat.pages.DashboardPage;
 import com.qlearning.uat.pages.HomePage;
 import com.qlearning.uat.pages.LoginPage;
 
-public class TransactionsHistoryTest extends Base {
-
-	public TransactionsHistoryTest() {
+public class DashboardTest extends Base{
+	
+	public DashboardTest() {
 		super();
 	}
-
+	
 	public WebDriver driver;
 	LoginPage loginPage;
 	DashboardPage dashboardPage;
-
+	
+	
+	
 	@BeforeMethod
 	public void setUp() {
 		driver = initializeBrowserAndOpenApplicationURL(prop.getProperty("browserName"));
@@ -29,19 +31,23 @@ public class TransactionsHistoryTest extends Base {
 		loginPage.enterEmailAddress(prop.getProperty("validInstructorEmail"));
 		loginPage.enterPassword(prop.getProperty("validInstructorPwd"));
 		dashboardPage = loginPage.clickOnLoginButton();
-
 	}
-
+	
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
 	}
-
-	@Test(groups = { "smoke" })
-	public void verifyTransactionsHistoryPageUrl() {
-		System.out.println("run");
-		String url = driver.getCurrentUrl();
-		Assert.assertEquals(url, "https://uat.qlearning.academy/transaction");
+	
+	//@Test(groups= {"smoke"})
+	public void verifyDashboardLogoutOption() {
+		dashboardPage.clickOnDashboardLogoutOption();
+	}
+	
+	@Test(groups= {"smoke"})
+	public void verifyWithdrawPopupDisplay() {
+		dashboardPage.clickOnWithdrawOption();
+		Assert.assertTrue(dashboardPage.retrieveWithdrawAmountPage());
+		
 	}
 
 }

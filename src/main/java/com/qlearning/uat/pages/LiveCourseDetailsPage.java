@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.qlearning.uat.utils.Utilities;
+
 public class LiveCourseDetailsPage {
 
 	WebDriver driver;
@@ -39,7 +41,7 @@ public class LiveCourseDetailsPage {
 	// Actions:
 
 	public void enterCourseTitle() {
-		courseTitle.sendKeys("PYTHON LIVE COURSE");
+		courseTitle.sendKeys("PYTHON LIVE COURSE"+Utilities.dynamicText());
 	}
 
 	public void enterCourseOverview() {

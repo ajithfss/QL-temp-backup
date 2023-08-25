@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.qlearning.uat.utils.Utilities;
+
 public class CreateIndependentAssessmentPage {
 	
 	WebDriver driver;
@@ -43,7 +45,7 @@ public class CreateIndependentAssessmentPage {
 	//Actions:
 	
 	public void enterAssessmentTitle() {
-		assessmentTitle.sendKeys("python Assessment");
+		assessmentTitle.sendKeys("python Assessment"+Utilities.dynamicText());
 	}
 	
 	public void selectCategory() {

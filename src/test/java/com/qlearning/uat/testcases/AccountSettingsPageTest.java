@@ -185,7 +185,7 @@ public class AccountSettingsPageTest extends Base{
 	}
 	
 	
-	@Test(groups= {"smoke"})
+	@Test(groups= {"regression"})
 	public void verifyCloseButtonInChangeMobileNumberPopup() {
 		accountSettingsPage.clickOnMobileNumberChangeButton();
 		accountSettingsPage.clickOnCloseButton();

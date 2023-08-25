@@ -42,9 +42,17 @@ public class NotificationSettingsTest extends Base{
 		driver.quit();
 	}
 
-	@Test
+	@Test(groups= {"smoke"})
 	public void verifyNotificationSettingsPageUrl() {
 		String url = driver.getCurrentUrl();
 		Assert.assertEquals(url,"https://uat.qlearning.academy/profile/teacher/teacher-profile");
 	}
+	
+	@Test(groups= {"smoke"})
+	public void verifyEmailandAppPushNotifications() {
+		Assert.assertTrue(notificationSettingsPage.retreiveEmailNotifyText());
+		Assert.assertTrue(notificationSettingsPage.retreiveAppPushNotifyText());
+	}
+	
+	
 }

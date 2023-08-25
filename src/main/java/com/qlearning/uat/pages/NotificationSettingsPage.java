@@ -40,4 +40,16 @@ public class NotificationSettingsPage {
 	@FindBy(xpath="((//label[text()='Student Course Completion'])[2]/following::input)[1]")
 	private WebElement subscriptionNewsLetterAppCheckBox;
 	
+	//Actions:
+	
+	public Boolean retreiveEmailNotifyText() {
+		Boolean text = emailNotifyText.isDisplayed();
+		return text;
+	}
+	
+	public Boolean retreiveAppPushNotifyText() {
+		Boolean text = appPushNotifyText.isDisplayed();
+		return text;
+	}
+	
 }
